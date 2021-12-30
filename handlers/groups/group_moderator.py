@@ -27,9 +27,6 @@ async def read_only_mode(message: types.Message):
 
     until_date = datetime.datetime.now() + datetime.timedelta(minutes=time)
 
-    service_message = await message.reply("Xabar 5 sekunddan so'ng o'chib ketadi.")
-    await asyncio.sleep(5)
-
     try:
         await message.chat.restrict(user_id=member_id, can_send_messages=False, until_date=until_date)
         await message.reply_to_message.delete()
@@ -37,7 +34,10 @@ async def read_only_mode(message: types.Message):
         await message.answer(f"Xatolik! {err.args}")
         return
 
-    await message.answer(f"Foydalanuvchi {message.reply_to_message.from_user.full_name} {time} minut yozish huquqidan mahrum etildi\n"
+    service_message = await message.reply("Xabar 5 sekunddan so'ng o'chib ketadi.")
+    await asyncio.sleep(5)
+
+    await message.answer(f"Foydalanuvchi {message.reply_to_message.from_user.full_name} {time} minut yozish huquqidan mahrum etildi\n\n"
                          f"Sabab: <b>{comment}</b>")
 
     await message.delete()
