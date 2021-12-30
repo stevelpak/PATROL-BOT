@@ -37,7 +37,8 @@ async def read_only_mode(message: types.Message):
         await message.answer(f"Xatolik! {err.args}")
         return
 
-    await message.answer(f"Foydalanuvchi {message.reply_to_message.from_user.full_name} {time} minut yozish huquqidan mahrum etildi")
+    await message.answer(f"Foydalanuvchi {message.reply_to_message.from_user.full_name} {time} minut yozish huquqidan mahrum etildi\n"
+                         f"Sabab: <b>{comment}</b>")
 
     await message.delete()
     await service_message.delete()
