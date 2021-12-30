@@ -62,7 +62,7 @@ async def undo_read_only_mode(message: types.Message):
 
     await asyncio.sleep(5)
     await message.chat.restrict(user_id=member_id, permissions=user_allowed, until_date=0)
-    await message.reply(f"Foydalanuvchi {member.full_name} tiklandi")
+    await message.answer(f"Foydalanuvchi {member.full_name} tiklandi")
 
     await message.delete()
     await service_message.delete()
