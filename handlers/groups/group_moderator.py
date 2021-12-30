@@ -29,6 +29,7 @@ async def read_only_mode(message: types.Message):
 
     try:
         await message.chat.restrict(user_id=member_id, can_send_messages=False, until_date=until_date)
+        await message.reply_to_message.delete()
     except aiogram.utils.exceptions.BadRequest as err:
         await message.answer(f"Xatolik! {err.args}")
         return
